@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap');
+body {
+ margin: 0;
+ padding: 0;
+ font-family: "Rubik", sans-serif;
+ background: #f6f6f6;
+ height: 100vh;
+ overflow: hidden;
+}
+/*=====index, forget password, register===== */
+.form-box {
+ position: absolute;
+ width: 350px;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%);
+ background: #ffffff;
+ box-shadow: 0px 20px 20px rgba(126, 152, 223, 0.05);
+ border-radius: 30px;
+ padding: 20px 10px;
+}
+.form-fg-box {
+ height: 450px;
+}
+input[type=email]:focus ~ .err-format,
+input[type=email]:valid ~ .err-format{
+ display: none;
+}
+/* .err-format{
+ color: red;
+ font-size: 13px;
+ font-style: italic;
+ font-weight: 500;
+ margin-left: 25px;
+ margin-top: -10px;
+} */
+/* button < */
+.back-page {
+ margin-bottom: 10px;
+}
+.back-page img {
+ position: relative;
+ width: 10px;
+ height: 20px;
+ left: 30px;
+ top: 15px;
+ color: #7e98df;
+}
+/* Header Login, Register, Forget Password (title) */
+.back-page h3 {
+ font-weight: 500;
+ font-size: 20px;
+ color: #7e98df;
+ text-align: center;
+ margin-top: -10px;
+}
+.form-box h3 {
+ font-weight: 500;
+ font-size: 22px;
+ text-align: center;
+ color: #7e98df;
+}
+.form-box p {
+ font-size: 14px;
+ color: #232323;
+ padding-left: 25px;
+ margin-top: 15px;
+}
+/* form input */
+.form-login .form-login-group,
+.form-register .form-register-group,
+.form-forgot-password .form-fg-group {
+ position: relative;
+ border-bottom: 1px solid #232323;
+ margin: 30px 25px;
+}
+.form-login-group input,
+.form-register-group input,
+.form-fg-group input {
+ width: 100%;
+ height: 40px;
+ font-size: 14px;
+ font-weight: bold;
+ color: #232323;
+ border: none;
+ background: none;
+ outline: none;
+}
+.form-login-group label,
+.form-register-group label,
+.form-fg-group label {
+ position: absolute;
+ top: 50%;
+ left: 0;
+ font-size: 14px;
+ color: #848484;
+ opacity: 0.75;
+ transform: translateY(-50%);
+ pointer-events: none;
+ transition: 0.5s;
+}
+.form-login-group input:focus ~ label,
+.form-login-group input:valid ~ label,
+.form-register-group input:focus ~ label,
+.form-register-group input:valid ~ label,
+.form-fg-group input:focus ~ label,
+.form-fg-group input:valid ~ label {
+ top: -5px;
+}
+.form-login-group input::-ms-reveal,
+.form-login-group input::-ms-clear,
+.form-register-group input::-ms-reveal,
+.form-register-group input::-ms-clear{
+ display: none;
+}
+#password-login,
+#password-register {
+ letter-spacing: 10px;
+}
+.form-login-group img,
+.form-register-group img,
+.form-fg-group img {
+ position: absolute;
+ right: 0;
+ top: 20px;
+ color: #232323;
+ width: 17px;
+ height: 17px;
+}
+/* forget password? text */
+.forget-password {
+ text-align: right;
+ font-size: 15px;
+ margin: -5px 30px;
+ cursor: pointer;
+}
+.forget-password a {
+ text-decoration: none;
+ color: #7e98df;
+}
+.forget-password a:visited {
+ color: #7e98df;
+}
+/* button submit */
+.submit-login,
+.submit-register,
+.submit-email {
+ background: #7e98df;
+ border-color: transparent;
+ border-radius: 70px;
+ margin: 30px 26px;
+ width: 85%;
+ font-size: 14px;
+ color: #ffffff;
+ padding: 12px;
+ outline: none;
+}
+.submit-email,
+.submit-register {
+ margin-top: 0px;
+}
+/* login with (line) */
+.form-box h4 {
+ text-align: center;
+ color: #848484;
+ margin-top: -5px;
+ font-weight: normal;
+ font-size: 13px;
+}
+.form-box h4::before {
+ content: "";
+ height: 1px;
+ width: 90px;
+ background-color: #848484;
+ position: absolute;
+ margin-top: 6px;
+ left: 30px;
+ z-index: -3;
+}
+.form-box h4::after {
+ content: "";
+ height: 1px;
+ width: 90px;
+ background-color: #848484;
+ position: absolute;
+ margin-top: 6px;
+ right: 30px;
+ z-index: -2;
+}
+.form-box h4 span {
+ background: #ffffff;
+ padding: 0 20px;
+}
+/* google login/register button */
+.google-login,
+.google-register {
+ background: #ffffff;
+ border: 1px solid #7e98df;
+ box-sizing: border-box;
+ border-radius: 70px;
+ margin: 20px 26px;
+ padding: 12px;
+ width: 85%;
+ font-size: 14px;
+ color: #7e98df;
+ outline: none;
+}
+.google-login img,
+.google-register img {
+ margin-top: -2px;
+ width: 21px;
+ height: 21px;
+ padding-right: 0.5rem;
+}
+.google-register {
+ margin-bottom: 30px;
+}
+/* signup link in login page*/
+.signup-link {
+ margin-bottom: 30px;
+ color: #313131;
+ font-size: 14px;
+ text-align: center;
+}
+.signup-link a {
+ text-decoration: none;
+}
+.signup-link a:visited {
+ color: #7e98df;
+}
+
+@media only screen and (max-width: 400px) {
+ .form-box {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  padding-top: 70px;
+  border-radius: 0px;
+ }
+}
