@@ -1,16 +1,16 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 const InputField = ({className, type, id, name, label, img, alt}) => {
-    const [inputValue, setInputValue] = useState('')
+    // const [inputValue, setInputValue] = useState('')
 
-    const changeHandler = (e) => {
-        setInputValue(e.target.value)
-    }
-    console.log(setInputValue)
+    // const changeHandler = (e) => {
+    //     setInputValue(e.target.value)
+    // }
+    // console.log(setInputValue)
 
     return (
         <div className={className}>
-            <input type={type} value={inputValue} id={id} name={name} onChange={changeHandler} required />
+            <input type={type} id={id} name={name} required />
             {img !== undefined ? <img src={img} alt={alt} /> : "" }
             <label htmlFor="input-field">{label}</label>
         </div>

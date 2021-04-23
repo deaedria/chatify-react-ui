@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const BackPage = (props) => {
     const link = (props.url !== undefined) ? props.url : '';
+    // console.log(link)
     return (
         <div className={props.className}>
             <Link to={"/" + link}><img src="/svg/back-arrow-icon.svg" alt="back arrow icon" /></Link>

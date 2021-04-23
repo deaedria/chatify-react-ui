@@ -1,0 +1,5 @@
+const userToken = ''
+
+export {
+    userToken
+}

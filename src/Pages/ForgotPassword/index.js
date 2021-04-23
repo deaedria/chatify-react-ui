@@ -7,7 +7,7 @@ const ForgotPassword = () => {
     return (<>
         <div className="container">
             <div className="form-box form-fg-box">
-                <BackPage className="back-page" header="Forgot Password" />
+                <BackPage className="back-page" header="Forgot Password" url="login" />
                 <p>You'll get messages soon on your e-mail</p>
                 <form className="form-forgot-password">
                     <InputField 

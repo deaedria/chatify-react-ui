@@ -7,7 +7,130 @@ body {
  height: 100vh;
  overflow: hidden;
 }
-/*=====index, forget password, register===== */
+/*=====splashscreen=====*/
+.bg-splashscreen {
+    background: #7E98DF;
+    height: 100vh;
+    width: 100vw;
+}
+.spinner {
+    font-size: 48px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    width: 1em;
+    height: 1em;
+}
+.spinner img{
+    display: block;
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    left: -5;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    margin-right: 25px;
+}
+.spinner .spinning-wheel{
+    animation: spinner-fade 0.8s infinite linear;
+}
+.spinner .spinning-wheel:nth-child(1) {
+    animation-delay: 0s;
+    transform: rotate(360deg)
+}
+.spinner .spinning-wheel:nth-child(2) {
+    animation-delay: 0.050s;
+    transform: rotate(300deg);
+}
+.spinner .spinning-wheel:nth-child(3) {
+    animation-delay: 0.100s;
+    transform: rotate(240deg);
+}
+.spinner .spinning-wheel:nth-child(4) {
+    animation-delay: 0.150s;
+    transform: rotate(180deg);
+}
+.spinner .spinning-wheel:nth-child(5) {
+    animation-delay: 0.200s;
+    transform: rotate(120deg);
+}
+.spinner .spinning-wheel:nth-child(6) {
+    animation-delay: 0.250s;
+    transform: rotate(60deg);
+}
+@keyframes spinner-fade {
+    0% {
+        opacity: 0.1;
+   }
+    100% {
+        opacity: 0.7;
+   }
+}
+/* not found */
+.bg-notfound {
+    background: #7E98DF;
+    height: 100vh;
+    width: 100vw;
+}
+.not-found {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+}
+.not-found .header{
+    margin-bottom: 30px;
+    font-style: italic;
+    font-size: 50px;
+    text-shadow:7px 7px 10px rgb(55, 55, 90);
+}
+/*=====index, forget password, register===== */  
+.form-box .alert{
+    margin-bottom: -55px;
+}
+.alert .err-message{
+  padding: 7px;
+  margin-top: 300px;
+  background-color: #f44336;
+  color: white;
+  display: block;
+  margin-top: -60px;
+  /* margin-bottom: 60px; */
+  font-size: 14px;
+  text-align: center;
+}
+/* .err-message:hover{
+  display:none;
+} */
+.hide-err ~ .err-message{
+  display: none;
+}
+.hide-err .success-message{
+  display: block;
+}
+.alert .success-message{
+  padding: 7px;
+  margin-top: 300px;
+  background-color: #7E98DF;
+  color: white;
+  display: block;
+  margin-top: -20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+/* .success-message:hover{
+  display:none;
+} */
+.hide-message ~ .success-message{
+  display: none;
+}
 .form-box {
  position: absolute;
  width: 350px;
@@ -26,13 +149,15 @@ input[type=email]:focus ~ .err-format,
 input[type=email]:valid ~ .err-format{
  display: none;
 }
-/* .err-format{
- color: red;
- font-size: 13px;
- font-style: italic;
- font-weight: 500;
- margin-left: 25px;
- margin-top: -10px;
+/* .closeBtn {
+ margin-left: 15px;
+ margin-top: -20px;
+ color: white;
+ font-weight: bold;
+ float: right;
+ font-size: 20px;
+ cursor: pointer;
+ transition: 0.3s;
 } */
 /* button < */
 .back-page {
@@ -115,7 +240,7 @@ input[type=email]:valid ~ .err-format{
 }
 #password-login,
 #password-register {
- letter-spacing: 10px;
+ letter-spacing: 5px;
 }
 .form-login-group img,
 .form-register-group img,
