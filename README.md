@@ -1,4 +1,4 @@
-## Tickitz-Frontend
+## Chatify-Frontend
 
 This is a frontend part for [api project](https://github.com/deaedria/chatify-server.git).
 
