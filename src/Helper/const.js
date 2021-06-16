@@ -1,5 +1,0 @@
-const userToken = ''
-
-export {
-    userToken
-}
