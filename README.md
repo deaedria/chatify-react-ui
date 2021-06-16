@@ -1,7 +1,7 @@
 # Chatify-Frontend
 
 ## About
-Chatify is a web app that allows users login to their personal account, send and search messages. Beside text, users can also send image. This app created using React, Redux. In this app, there are also an example how to doing unit testing. [Server-side](https://github.com/deaedria/chatify-server.git) created with Node.js and Express.js.
+Chatify is a web app that allows users create their personal account, send and search messages. Beside text, users can also send image. This app created using React, Redux. In this app, there are also an example how to doing unit testing. [Server-side](https://github.com/deaedria/chatify-server.git) created with Node.js and Express.js.
 
 ## Getting started
 
