@@ -31,8 +31,8 @@ const ActionMenu = () => {
             <div className="menu-list">
                 <ul>
                     <li><img src="/svg/settings-white-icon.svg" alt="settings icon" /><Link to='/#'>Settings</Link></li>
-                    <li><img src="/svg/contacts-white-icon.svg" alt="contacts icon" /><Link to='/#'>Contacts</Link></li>
-                    <li><img src="/svg/calls-icon.svg" alt="calls icon" /><Link to='#'>Calls</Link></li>
+                    <li><img src="/svg/contacts-white-icon.svg" alt="contacts icon" /><Link to='/contacts'>Contacts</Link></li>
+                    <li><img src="/svg/calls-icon.svg" alt="calls icon" /><Link to='/callhistory'>Calls</Link></li>
                     <li><img src="/svg/bookmark-white-icon.svg" alt="bookmark icon" /><Link to='/#'>Save messages</Link></li>
                     <li><img src="/svg/invite-white-icon.svg" alt="invite icon" /><Link to='/#'>Invite Friends</Link></li>
                     <li><img src="/svg/faq-white-icon.svg" alt="faq icon" /><Link to='/#'>Telegram FAQ</Link></li>

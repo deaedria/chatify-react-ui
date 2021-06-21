@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom";
 import { SearchMessages } from "../Redux/Actions/messages"
 
 const SearchAndCreate = () => {
     const { data: userToken } = useSelector((state) => state.UserLogin)
 
+    let history = useHistory();
     const dispatch = useDispatch()
 
     const [formInput, setFormInput] = useState({
@@ -18,7 +20,7 @@ const SearchAndCreate = () => {
 
             if (formInput.keyword !== '') {
                 dispatch(SearchMessages(formInput.keyword, dataToken.user_id, userToken))
-                // document.getElementById("set-input").value = "";           
+                history.push(`/chatlist/search/${formInput.keyword.toLowerCase().split(' ').join('-')}`)       
             } else {
                 // alert("your massage must be filled")
             }
@@ -35,7 +37,7 @@ const SearchAndCreate = () => {
                     }} onKeyPress={(e) => onKeyPress(e)} />
                 </div>
             </div>
-            <img src="/svg/plus-icon.svg" alt="plus icon" className="create" />
+            <img src="/svg/plus-icon.svg" alt="plus icon" className="create" onClick={() => history.push(`/contacts`)} />
         </section>
     )
 }

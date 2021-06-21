@@ -3,6 +3,7 @@ import Login from './Login'
 import Register from './Register'
 import ForgotPassword from './ForgotPassword'
 import CallHistory from './CallHistory'
+import Contacts from './Contacts'
 import ChatList from './ChatList'
 import Message from './Message'
 
@@ -12,6 +13,7 @@ export {
     Register,
     ForgotPassword,
     CallHistory,
+    Contacts,
     ChatList,
     Message
 }

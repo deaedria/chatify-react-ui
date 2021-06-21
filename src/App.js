@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch } from "react-router-dom";
-import { SplashScreen, Login, Register, ForgotPassword, ChatList, Message } from './Pages'
+import { SplashScreen, Login, Register, ForgotPassword, ChatList, Message, Contacts } from './Pages'
 import NotFound from './Components/NotFound'
 import { PrivateRoute, PublicRoute } from "./Components/Route/index"
 import { Provider } from 'react-redux'
 import configureStore from './Redux/store'
 import { PersistGate } from 'redux-persist/integration/react'
+import SearchMessages from './Pages/SearchMessages';
 // import { Redirect } from 'react-router-dom';
 
 const { store, persistor } = configureStore()
@@ -15,6 +16,8 @@ const AppRouter = () => {
       <Switch>
         <PrivateRoute path="/chatlist" exact={true} component={() => <ChatList />} />
         <PrivateRoute path="/chatlist/message/:name/:contact" exact={true} component={() => <Message />} />
+        <PrivateRoute path="/chatlist/search/:keyword" exact={true} component={() => <SearchMessages />} />
+        <PrivateRoute path="/contacts" exact={true} component={() => <Contacts />} />
         <PublicRoute restricted={true} path="/" exact={true} component={() => <SplashScreen />} />
         <PublicRoute restricted={true} path="/login" exact={true} component={() => <Login />} />
         <PublicRoute restricted={true} path="/register" exact={true} component={() => <Register />} />
