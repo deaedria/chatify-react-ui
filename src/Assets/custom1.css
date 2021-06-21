@@ -305,6 +305,7 @@ body {
    .call-list img {
     width: 55px;
     height: 55px;
+    border-radius: 10px;
    }
    .chat-list .text{
     margin-top: 5px;
@@ -353,15 +354,14 @@ body {
        margin-left: 15px;
        color: #7e98df;
    }
-/*  
-  .list {
+   /* .list {
     width: 375px;
     overflow: hidden;
     list-style: none;
     padding: 0;
-  }
-  
-  .list li {
+  } */
+
+  /* .list li {
     scroll-snap-type: x mandatory;
     overflow-x: auto;
     display: flex;
@@ -369,129 +369,39 @@ body {
     border: 1px solid white;
     scrollbar-width: none;
     cursor: grab;
-  }
-  
-  .list li::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .list li > * {
-    scroll-snap-align: start ;
-    font-size: 2rem;
-  }
-  
-  .list li .list-button {
-    border: none;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .list li .list-button:first-of-type {
-    flex: 1 0 30%;
-    background-color: orange;
-  }
-  
-  .list li {
-    flex: 2 0 100%;
-    color: white;
-    background-color: slategrey;
-    padding: 0.5rem;
-  }
-  
-  .list li .list-button:last-of-type {
-    flex: 1 0 30%;
-    background-color: darkred;
   } */
-  
-
-/* .swipeable {
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 5px;
-    vertical-align: bottom;
-    backface-visibility: hidden;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+.dot-menu{
+  position: absolute;
+  margin-top: 25px;
+  left:33%
 }
-
-.swipeable:last-child {
-    margin: 0;
+.list-button{
+  display: none;
 }
-
-.swipeable .inner {
-    position: relative;
-    z-index: 2;
-    backface-visibility: hidden;
-    background: #f7f7f7;
-    padding: 5px 24px 5px 12px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, .3);
-    cursor: grab;
-    font-size: 12px;
-    color: #555;
+.list-button .btn-icon{
+  background: #7e98df;
+  position: relative;
+  height: 8.5%;
+  padding: 11px 10px;
+  position: absolute;
+  left: 25%;
+  display: none;
 }
-
-.swipeable .inner:active {
-    cursor: default;
+.list-button img{
+  width: 15px;
+  height: 18px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
-
-.swipeable .action-button {
-    position: absolute;
-    z-index: 1;
-    right: 0;
-    top: 0;
-    width: 100%;
-    padding: 24px 15px 24px 0;
-    cursor: pointer;
-    text-align: right;
-    color: white;
-    font-size: 12px;
-    transition: 0.3s ease;
+.list-button .btn-icon{
+  display: none;
 }
-
-.swipeable .action-button.item {
-    background: #7E98DF;
-} */
-
-/* .list li {
-    display: flex;
-    align-items: center;
-    height: 60px;
-    padding: 5px 10px;
-    margin: 10px 0;
-    background-color: orange;
-    color: black;
-    transition: all 300ms ease-out;
-} */
-
-/* .list li.js-active {
-    overflow-x: hidden;
-    width: 80%;
+.list:hover .list-button{
+  display: block;
 }
-
-.list li.js-active .list-button {
-    z-index: 1;
-    opacity: 1;
-    visibility: visible;
+.list-button:hover .btn-icon{
+  display: block;
 }
-
-.list-button {
-    height: 60px;
-    width: 40%;
-    background-color: #7E98DF;
-    visibility: hidden;
-    z-index: -1;
-    transition: z-index 0.25s linear;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 20px;
-    opacity: 0;
-}
-
-.list-button img {
-    width: 15px;
-    height: 15px;
-    margin-right: 25px;
-} */
 /* call history list */
 .call-list {
  display: flex;
@@ -659,37 +569,55 @@ body {
  .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  top: 80%;
-  right: 0%;
+  top: 70%;
+  left: 0%;
   z-index: 1;
  } 
  .dropdown-content.left {
   display: none;
   position: absolute;
   background-color: transparent;
-  top: 80%;
-  left: 0%;
+  top: 70%;
+  left: 18%;
   z-index: 1;
   width: fit-content;
  } 
- .dropdown-content button {
+ .dropdown-content .btn{
+   display: none;
+ }
+ .dropdown-content .btn button {
   color: white;
-  padding: 5px 16px;
+  padding: 5px 10px;
   background: #7e98df;
-  border: 0;
+  border: 2px solid white;
   display: block;
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  font-size: 14px;
+  border-radius: 5px;
  }
- .dropdown-content.left button {
+ .dropdown-content.left .btn button {
   color: #7e98df;
-  padding: 5px 16px;
+  padding: 5px 10px;
   background: white;
-  border: 0;
+  border: 2px solid #7e98df;
+  display: block;
+  position: absolute;
+  top: 45%;
+  right: 0%;
+  font-size: 14px;
+  border-radius: 5px;
+ }
+ .dropdown-content .arrow-down{
+   position: absolute;
+   width: 15px;
+   height: 15px;
+ }
+ .dropdown:hover .dropdown-content {
   display: block;
  }
- .dropdown-content a:hover {background-color: transparent}  
- .dropdown:hover .dropdown-content {
+ .dropdown-content:hover .btn {
   display: block;
  }
 /* message box bottom wrapper (footer) */
