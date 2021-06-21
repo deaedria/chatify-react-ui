@@ -5,15 +5,12 @@ import BackPage from "../../../Components/BackPage"
 const HeaderMessage = (props) => {
     const {imgContact, contactName} = props
 
-    // const { name } = useParams();
-    // const split = name.split('-').join(' ');
-    // console.log(split)
     return (
         <header className="top-wrapper">
             <BackPage url={"localhost:3000/chatlist"} className="back-page back-sm-device" />
-            <img src={imgContact} alt="profile contact" />
+            <img src={imgContact !== undefined || imgContact !== null ? imgContact : '/img/white.jpg'} alt="profile contact" className="profile-header" />
             <div className="text">
-                <h6>{contactName}</h6>
+                <h6>{contactName !== undefined ? contactName : ''}</h6>
                 {/* <p>Online</p> */}
             </div>
         </header>

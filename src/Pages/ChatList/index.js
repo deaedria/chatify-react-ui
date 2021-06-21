@@ -13,7 +13,7 @@ import ActionMenu from '../../Components/ActionMenu';
 const ChatList = () => {
     const { data: userToken } = useSelector((state) => state.UserLogin)
     const { data } = useSelector((state) => state.FetchChats)
-    const { data: messageList, loading } = useSelector((state) => state.SearchMessages)
+    console.log(data)
 
     let history = useHistory();
     const dispatch = useDispatch()
@@ -35,21 +35,6 @@ const ChatList = () => {
                     <SearchAndCreate />
                     <ChatSelection />
                     <div className="box-list chat-scroll">
-                        {loading === false ?
-                            messageList && messageList.map((item) => {
-                                return (<>
-                                    <Chat
-                                        imgProfile={item.friend_photo}
-                                        name={item.contact_name}
-                                        imgNotif={item.notification}
-                                        text={item.content}
-                                        time={item.time}
-                                        onClick={() => history.push(`/chatlist/message/${item.contact_name.toLowerCase().split(' ').join('-')}/${item.contact_id}`)}
-                                    />
-                                </>)
-                            }) :
-                            <p></p>
-                        }
                         {data && data.map((item) => {
                             return (<>
                                 <Chat
@@ -58,6 +43,7 @@ const ChatList = () => {
                                     imgNotif={item.notification}
                                     text={item.last_message}
                                     time={item.last_time}
+                                    sc_id={item.sc_id}
                                     onClick={() => history.push(`/chatlist/message/${item.contact_name.toLowerCase().split(' ').join('-')}/${item.contact_id}`)}
                                 />
                             </>)

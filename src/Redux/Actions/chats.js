@@ -23,3 +23,44 @@ export const FetchChats = (userToken, dataToken) => {
         })
     }
 }
+
+const AddChatRequest = () => {return {type: 'ADD_CHAT_REQUEST'}}
+const AddChatSuccess = (data) => {return {type: 'ADD_CHAT_SUCCESS',payload: data}}
+const AddChatError = (err) => {return {type: 'ADD_CHAT_ERROR',payload: err}}
+
+export const AddChats = (user_id, contact_id) => {
+    return (dispatch) => {
+        dispatch(AddChatRequest())
+        return axios({
+            url: `${process.env.REACT_APP_API_URL}chatlist/user`,
+            method: 'POST',
+            params: {
+                user_id: user_id,
+                contact_id: contact_id
+            }
+        }).then((res) => {
+            dispatch(AddChatSuccess(res.data.data))
+        }).catch((err) => {
+            dispatch(AddChatError(err))
+        })
+    }
+}
+
+const DelChatRequest = () => {return {type: 'DEL_CHAT_REQUEST'}}
+const DelChatSuccess = (data) => {return {type: 'DEL_CHAT_SUCCESS',payload: data}}
+const DelChatError = (err) => {return {type: 'DEL_CHAT_ERROR',payload: err}}
+
+export const DelChats = (sc_id) => {
+    console.log(sc_id)
+    return (dispatch) => {
+        dispatch(DelChatRequest())
+        return axios({
+            url: `${process.env.REACT_APP_API_URL}chatlist/${sc_id}`,
+            method: 'DELETE',
+        }).then((res) => {
+            dispatch(DelChatSuccess(res.data.data))
+        }).catch((err) => {
+            dispatch(DelChatError(err))
+        })
+    }
+}

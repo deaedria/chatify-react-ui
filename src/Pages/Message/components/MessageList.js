@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
+import { useHistory } from "react-router-dom";
 import { DelMessages } from "../../../Redux/Actions/messages"
 // import Hammer from 'hammerjs';
 // import image from "../../../../chatify-app/"
@@ -10,26 +11,34 @@ const MessageList = (props) => {
         imgFriend,
         imgUser,
         senderId,
-        content
+        content,
     } = props
     const check = content.includes("/uploads/images/")
 
-    // const { loading: isLoading } = useSelector((state) => state.DelMessages)
     const dispatch = useDispatch()
+    const messageRef = useRef();
+    let history = useHistory();
 
     const onClick = (id) => {
         dispatch(DelMessages(id))
-        // if(isLoading === false){
-        //     window.location.reload()
-        // }
+        history.go(0)
     }
 
     const { contact } = useParams();
-    // const split = name.split('-').join(' ');
-    // console.log(typeof contact)
+
+    useEffect(() => {
+        if (messageRef.current) {
+            messageRef.current.scrollIntoView(
+                {
+                    behavior: 'smooth',
+                    block: 'end'
+                })
+        }
+    })
+
     if (parseInt(contact) === senderId) {
         return (
-            <div className="row">
+            <div className="row" ref={messageRef}>
                 <div className="col-md-6">
                     <div className="single-message-left dropdown">
                         <img src={imgFriend} alt="profile contact" className="profile-image" />
@@ -40,7 +49,10 @@ const MessageList = (props) => {
                             }
                         </div>
                         <div className="dropdown-content left">
-                            <button onClick={() => onClick(props.id)}>delete</button>
+                            <img className="arrow-down" src="/svg/arrow-down.svg" alt="arrow down" /> :
+                            <div className="btn">
+                                <button onClick={() => onClick(props.id)}>delete</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -48,7 +60,7 @@ const MessageList = (props) => {
         )
     } else if (parseInt(contact) !== senderId) {
         return (
-            <div className="row">
+            <div className="row" ref={messageRef}>
                 <div className="col-md-6 offset-md-6">
                     <div className="single-message-right dropdown">
                         <div className="dropbtn user-content">
@@ -58,7 +70,10 @@ const MessageList = (props) => {
                             }
                         </div>
                         <div className="dropdown-content">
-                            <button onClick={() => onClick(props.id)}>delete</button>
+                            <img className="arrow-down" src="/svg/arrow-down.svg" alt="arrow down" />
+                            <div className="btn">
+                                <button onClick={() => onClick(props.id)}>delete</button>
+                            </div>
                         </div>
                         <img src={"/" + imgUser} alt="profile contact" className="profile-image" />
                     </div>

@@ -19,7 +19,7 @@ const Message = () => {
     const { data: userToken } = useSelector((state) => state.UserLogin)
     const { data: dataMessage, loading } = useSelector((state) => state.FetchMessages)
     const { data, loading: isLoading } = useSelector((state) => state.FetchChats)
-    const { data: messageList, loading: searchLoading } = useSelector((state) => state.SearchMessages)
+    // console.log(data)
 
     let history = useHistory();
     const dispatch = useDispatch()
@@ -35,6 +35,11 @@ const Message = () => {
     })
 
     const { contact } = useParams();
+
+    const dataHeader = data.find((element) => {
+        return contact == element.contact_id;
+    })
+
 
     useEffect(() => {
         const dataToken = JSON.parse(atob(userToken.split('.')[1]));
@@ -66,7 +71,7 @@ const Message = () => {
         if (e.key === 'Enter') {
             e.preventDefault();
             const dataToken = JSON.parse(atob(userToken.split('.')[1]));
-            console.log(formData.content)
+            console.log(formData.content?.length)
 
             let myData = {
                 content: e.target.value,
@@ -98,21 +103,6 @@ const Message = () => {
                     <ChatSelection />
                     {isLoading ? <p></p> :
                         <div className="box-list chat-scroll">
-                            {searchLoading === false ?
-                                messageList && messageList.map((item) => {
-                                    return (<>
-                                        <Chat
-                                            imgProfile={item.friend_photo}
-                                            name={item.contact_name}
-                                            imgNotif={item.notification}
-                                            text={item.content}
-                                            time={item.time}
-                                            onClick={() => history.push(`/chatlist/message/${item.contact_name.toLowerCase().split(' ').join('-')}/${item.contact_id}`)}
-                                        />
-                                    </>)
-                                }) :
-                                <p></p>
-                            }
                             {data && data.map((item) => {
                                 return (<>
                                     <Chat
@@ -121,6 +111,7 @@ const Message = () => {
                                         imgNotif={item.notification}
                                         text={item.last_message}
                                         time={item.last_time}
+                                        sc_id={item.sc_id}
                                         onClick={() => history.push(`/chatlist/message/${item.contact_name.toLowerCase().split(' ').join('-')}/${item.contact_id}`)}
                                     />
                                 </>)
@@ -130,11 +121,12 @@ const Message = () => {
                 </div>
                 <div className="col-md-8 col-sm-12">
                     <aside className="message-box show-message">
-                        {dataMessage && dataMessage.map((item) =>
+                        {dataHeader ?
                             <HeaderMessage
-                                imgContact={item.friend_photo}
-                                contactName={item.contact_name}
-                            />)
+                                imgContact={dataHeader?.friend_photo}
+                                contactName={dataHeader?.contact_name}
+                            />
+                            : <p></p>
                         }
                         {loading ? <p></p> :
                             <section className="message box-list" id="box">
