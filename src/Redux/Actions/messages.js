@@ -89,3 +89,19 @@ export const SearchMessages = (keyword, id, userToken) => {
         })
     }
 }
+
+const StatusMessageRequest = () => {return {type: 'STATUS_MESSAGE_REQUEST'}}
+const StatusMessageSuccess = (data) => {return {type: 'STATUS_MESSAGE_SUCCESS',payload: data}}
+const StatusMessageError = (err) => {return {type: 'STATUS_MESSAGE_ERROR',payload: err}}
+
+export const UpdStatusMessages = (sc_id, sender_id, contact_account) => {
+    return (dispatch) => {
+        dispatch(StatusMessageRequest())
+        return axios.patch(`${process.env.REACT_APP_API_URL}message/chat?id=${sc_id}&sender_id=${sender_id}&contact_id=${contact_account}`)
+        .then((res) => {
+            dispatch(StatusMessageSuccess(res.data.data))
+        }).catch((err) => {
+            dispatch(StatusMessageError(err))
+        })
+    }
+}

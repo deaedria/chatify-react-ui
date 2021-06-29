@@ -1,5 +1,5 @@
 import React from 'react';
-import moment from 'moment'
+import moment, { updateLocale } from 'moment'
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom";
 import { DelChats } from "../Redux/Actions/chats"
@@ -8,21 +8,17 @@ const Chat = (props) => {
     const {
         imgProfile,
         name,
-        imgNotif,
         text,
         time,
         imgCheck,
-        altCheck,
-        badgeClass,
-        badge,
         onClick,
-        sc_id
+        sc_id,
+        unreadSum
     } = props
     const check = text?.includes("/uploads/images/")
 
     const dispatch = useDispatch()
     let history = useHistory();
-
 
     return (
         <ul className="list">
@@ -33,7 +29,7 @@ const Chat = (props) => {
                     <img src={"../../../../" + imgProfile} alt="friend" className="profile-image" />
                     <div className="text">
                         <h6>{name}
-                            {imgNotif === 'on' ?
+                            {parseInt(unreadSum) > 0 ?
                                 <img src="/svg/bell-icon.svg" alt="bell icon" /> : ""
                             }
                         </h6>
@@ -48,18 +44,44 @@ const Chat = (props) => {
                         </p> */}
                     </div>
                     <div className="chat-list-right align-items-end">
-                        <div className="time">{time ? moment(time).isSame(moment(), 'day') ? moment(time).format("HH:mm") : moment(time).fromNow() : ''}</div>
-                        <div className={badgeClass}>{badge}</div>
-                        {imgCheck !== undefined ?
-                            <img src={"/svg/" + imgCheck} alt={altCheck} /> : ""
-                        }
+                        <div className="time">
+                            {time ? moment(time).isSame(moment(), 'day') ?
+                                moment(time).format("HH:mm")
+                                :
+                                moment(time).fromNow(updateLocale("en", {
+                                    relativeTime: {
+                                        future: "in %s",
+                                        past: "%s",
+                                        s: "sec",
+                                        m: "%dm ago",
+                                        mm: "%dm ago",
+                                        h: "%dh ago",
+                                        hh: "%dh ago",
+                                        d: "%dd ago",
+                                        dd: "%dd ago",
+                                        M: "%dmth",
+                                        MM: "%dmth ago",
+                                        y: "y ago",
+                                        yy: "%dy ago"
+                                    }
+                                }))
+                                :
+                                ''
+                            }
+                        </div>
+                        <div className="badge round">
+                            {parseInt(unreadSum) > 0 ?
+                                unreadSum
+                                : ''
+                            }
+                        </div>
                     </div>
                     <div className="list-button">
                         <img className="dot-menu" src="/svg/dot-menu.svg" alt="menu" />
                         <div className="btn-icon">
                             <img src="/svg/bookmark-white-icon.svg" alt="save chat" />
                             <img src="/svg/check-white-icon.svg" alt="read chat" />
-                            <img src="/svg/delete-icon.svg" alt="delete chat" onClick={() => {dispatch(DelChats(sc_id)); history.go(0)} }/>
+                            <img src="/svg/delete-icon.svg" alt="delete chat" onClick={() => { dispatch(DelChats(sc_id)); history.go(0) }} />
                         </div>
                     </div>
                 </li>

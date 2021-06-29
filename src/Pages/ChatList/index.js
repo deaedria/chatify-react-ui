@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { withRouter } from "react-router";
 import { useDispatch, useSelector } from "react-redux"
 import { FetchChats } from "../../Redux/Actions/chats"
+import { UpdStatusMessages } from "../../Redux/Actions/messages"
 import ChatSelection from '../../Components/ChatSelection';
 import FirstNavWrapper from '../../Components/FirstNavWrapper';
 import SearchAndCreate from '../../Components/SearchAndCreate';
@@ -22,6 +23,14 @@ const ChatList = () => {
         const dataToken = JSON.parse(atob(userToken.split('.')[1]));
         dispatch(FetchChats(userToken, dataToken))
     }, [dispatch, userToken])
+
+    const updStatus = (contact_name, sc_id, contact_id) => {
+        console.log('masuk')
+        const dataToken = JSON.parse(atob(userToken.split('.')[1]));
+        dispatch(UpdStatusMessages(sc_id, contact_id, dataToken.user_id));
+        dispatch(FetchChats(userToken, dataToken))
+        history.push(`/chatlist/message/${contact_name.toLowerCase().split(' ').join('-')}/${contact_id}`);
+    }
 
     return (
         <div className="container">
@@ -44,7 +53,8 @@ const ChatList = () => {
                                     text={item.last_message}
                                     time={item.last_time}
                                     sc_id={item.sc_id}
-                                    onClick={() => history.push(`/chatlist/message/${item.contact_name.toLowerCase().split(' ').join('-')}/${item.contact_id}`)}
+                                    unreadSum={item.unread_messages}
+                                    onClick={() => updStatus(item.contact_name, item.sc_id, item.contact_id)}
                                 />
                             </>)
                         })}

@@ -12,6 +12,7 @@ const MessageList = (props) => {
         imgUser,
         senderId,
         content,
+        status
     } = props
     const check = content.includes("/uploads/images/")
 
@@ -69,6 +70,13 @@ const MessageList = (props) => {
                                 <p>{content}</p>
                             }
                         </div>
+                        <span className="status">
+                            {status === 'unread' ?
+                                <img src={"/svg/check-grey-icon.svg"} alt="check" className="is-read" />
+                                :
+                                <img src={"/svg/check-blue-icon.svg"} alt="check" className="is-read" />
+                            }
+                        </span>
                         <div className="dropdown-content">
                             <img className="arrow-down" src="/svg/arrow-down.svg" alt="arrow down" />
                             <div className="btn">

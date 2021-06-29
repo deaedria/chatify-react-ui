@@ -102,9 +102,35 @@ const SearchMessages = (state = initialState, action = {}) => {
     }
 }
 
+const UpdStatusMessages = (state = initialState, action = {}) => {
+    switch (action.type) {
+        case 'STATUS_MESSAGE_REQUEST':
+            return {
+                ...state,
+                loading: true
+            }    
+        case 'STATUS_MESSAGE_SUCCESS':
+            return {
+                ...state,
+                loading: false,
+                data: action.payload
+            }    
+        case 'STATUS_MESSAGE_ERROR':
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+                data: []
+            }    
+        default:
+            return state
+    }
+}
+
 export{
     FetchMessages,
     AddMessages,
     DelMessages,
-    SearchMessages
+    SearchMessages,
+    UpdStatusMessages
 }

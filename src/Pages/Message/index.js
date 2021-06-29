@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { withRouter } from "react-router";
 import { useDispatch, useSelector } from "react-redux"
 import { FetchChats } from "../../Redux/Actions/chats"
-import { FetchMessages, AddMessages } from "../../Redux/Actions/messages"
+import { FetchMessages, AddMessages, UpdStatusMessages } from "../../Redux/Actions/messages"
 import { Link } from "react-router-dom";
 // import axios from 'axios';
 // import BackPage from '../../Components/BackPage';
@@ -40,12 +40,12 @@ const Message = () => {
         return contact == element.contact_id;
     })
 
-
     useEffect(() => {
         const dataToken = JSON.parse(atob(userToken.split('.')[1]));
+        dispatch(UpdStatusMessages(dataHeader?.sc_id, contact, dataToken.user_id));
         dispatch(FetchMessages(userToken, dataToken, contact))
         dispatch(FetchChats(userToken, dataToken))
-    }, [contact, dispatch, userToken])
+    }, [contact, dataHeader?.sc_id, dispatch, userToken])
 
     const onChange = (e) => {
         let file = e.target.files
@@ -90,6 +90,13 @@ const Message = () => {
         }
     }
 
+    const updStatus = (contact_name, sc_id, contact_id) => {
+        const dataToken = JSON.parse(atob(userToken.split('.')[1]));
+        dispatch(UpdStatusMessages(sc_id, contact_id, dataToken.user_id));
+        dispatch(FetchChats(userToken, dataToken))
+        history.push(`/chatlist/message/${contact_name.toLowerCase().split(' ').join('-')}/${contact_id}`);
+    }
+
 
     return (
         <div className="container">
@@ -112,7 +119,8 @@ const Message = () => {
                                         text={item.last_message}
                                         time={item.last_time}
                                         sc_id={item.sc_id}
-                                        onClick={() => history.push(`/chatlist/message/${item.contact_name.toLowerCase().split(' ').join('-')}/${item.contact_id}`)}
+                                        unreadSum={item.unread_messages}
+                                        onClick={() => updStatus(item.contact_name, item.sc_id, item.contact_id)}
                                     />
                                 </>)
                             })}
@@ -137,6 +145,7 @@ const Message = () => {
                                         senderId={item.sender_id}
                                         content={item.content}
                                         id={item.scm_id}
+                                        status={item.status}
                                     />)
                                 }
                             </section>

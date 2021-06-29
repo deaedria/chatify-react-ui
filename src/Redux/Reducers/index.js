@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import { UserLogin, UserRegister } from './users'
 import { FetchChats, AddChats, DelChats } from './chats'
 import { FetchContacts } from './contacts'
-import { FetchMessages, AddMessages, DelMessages, SearchMessages } from './messages'
+import { FetchMessages, AddMessages, DelMessages, SearchMessages, UpdStatusMessages } from './messages'
 
 const reducers = combineReducers({
     FetchChats,
@@ -13,6 +13,7 @@ const reducers = combineReducers({
     AddMessages,
     DelMessages,
     SearchMessages,
+    UpdStatusMessages,
     UserLogin,
     UserRegister
 })
