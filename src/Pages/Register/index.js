@@ -55,10 +55,10 @@ const Register = () => {
 
         if (x === 'password') {
             document.getElementById('password-register').type = 'text';
-            document.getElementById('mybutton').innerHTML = "<img src='/svg/eye-icon.svg' alt='eye icon' />";
+            document.getElementById('mybutton').innerHTML = "<img src='/svg/eye-invisible-icon.svg' alt='eye icon' />";
         } else {
             document.getElementById('password-register').type = 'password';
-            document.getElementById('mybutton').innerHTML = "<img src='/svg/eye-invisible-icon.svg' alt='eye invisible icon' />";
+            document.getElementById('mybutton').innerHTML = "<img src='/svg/eye-icon.svg' alt='eye invisible icon' />";
         }
     }
 
@@ -96,7 +96,7 @@ const Register = () => {
                         }} />
                         <div className="input-group-append">
                             <span id="mybutton" onClick={(e) => onClick(e)} >
-                                <img src="/svg/eye-invisible-icon.svg" alt="eye icon" />
+                                <img src="/svg/eye-icon.svg" alt="eye icon" />
                             </span>
                         </div>
                         <label htmlFor="input-field">Password</label>
