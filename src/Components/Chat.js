@@ -81,7 +81,7 @@ const Chat = (props) => {
                         <div className="btn-icon">
                             <img src="/svg/bookmark-white-icon.svg" alt="save chat" />
                             <img src="/svg/check-white-icon.svg" alt="read chat" />
-                            <img src="/svg/delete-icon.svg" alt="delete chat" onClick={() => { dispatch(DelChats(sc_id)) }} />
+                            <img src="/svg/delete-icon.svg" alt="delete chat" onClick={() => { dispatch(DelChats(sc_id)); window.location.reload();  }} />
                         </div>
                     </div>
                 </li>

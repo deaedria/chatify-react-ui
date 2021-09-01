@@ -63,6 +63,7 @@ const Message = () => {
             dispatch(AddMessages(userToken, dataToken, contact, myData))
             dispatch(FetchMessages(userToken, dataToken, contact))
             dispatch(FetchChats(userToken, dataToken))
+            window.location.reload(); 
             // document.querySelector(".box-list").scrollTop = document.querySelector(".box-list").scrollHeight
         }
     }
@@ -83,6 +84,7 @@ const Message = () => {
                 dispatch(FetchMessages(userToken, dataToken, contact))
                 dispatch(FetchChats(userToken, dataToken))
                 document.getElementById("input").value = "";
+                window.location.reload(); 
             } else {
                 // alert("your massage must be filled")
             }
