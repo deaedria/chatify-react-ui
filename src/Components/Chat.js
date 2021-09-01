@@ -1,7 +1,7 @@
 import React from 'react';
 import moment, { updateLocale } from 'moment'
 import { useDispatch } from "react-redux"
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { DelChats } from "../Redux/Actions/chats"
 
 const Chat = (props) => {
@@ -19,6 +19,7 @@ const Chat = (props) => {
 
     const dispatch = useDispatch()
     let history = useHistory();
+    let location = useLocation();
 
     return (
         <ul className="list">
@@ -81,7 +82,7 @@ const Chat = (props) => {
                         <div className="btn-icon">
                             <img src="/svg/bookmark-white-icon.svg" alt="save chat" />
                             <img src="/svg/check-white-icon.svg" alt="read chat" />
-                            <img src="/svg/delete-icon.svg" alt="delete chat" onClick={() => { dispatch(DelChats(sc_id)); window.location.reload();  }} />
+                            <img src="/svg/delete-icon.svg" alt="delete chat" onClick={() => { dispatch(DelChats(sc_id)); history.push(location.pathname)  }} />
                         </div>
                     </div>
                 </li>
