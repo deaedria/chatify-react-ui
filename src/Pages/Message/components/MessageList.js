@@ -22,7 +22,6 @@ const MessageList = (props) => {
 
     const onClick = (id) => {
         dispatch(DelMessages(id))
-        history.go(0)
     }
 
     const { contact } = useParams();
@@ -45,7 +44,7 @@ const MessageList = (props) => {
                         <img src={imgFriend} alt="profile contact" className="profile-image" />
                         <div className="dropbtn sender-content">
                             {check ?
-                                <img className="content-image" src={`http://localhost:5000/${content}`} alt="content" /> :
+                                <img className="content-image" src={`${process.env.REACT_APP_IMG_URL}${content}`} alt="content" /> :
                                 <p>{content}</p>
                             }
                         </div>
@@ -66,7 +65,7 @@ const MessageList = (props) => {
                     <div className="single-message-right dropdown">
                         <div className="dropbtn user-content">
                             {check ?
-                                <img className="content-image" src={`http://localhost:5000/${content}`} alt="content" /> :
+                                <img className="content-image" src={`${process.env.REACT_APP_IMG_URL}${content}`} alt="content" /> :
                                 <p>{content}</p>
                             }
                         </div>

@@ -17,7 +17,7 @@ const ContactList = (props) => {
 
     return (
         <section className="call-list" onClick={() => handleClick(name, user_id, contact_id)}>
-            <img src={`http://localhost:5000/${image}`} alt="friend" className="profile-image" />
+            <img src={`${process.env.REACT_APP_IMG_URL}${image}`} alt="friend" className="profile-image" />
             <div className="text">
                 <h4>{name}</h4>
             </div>

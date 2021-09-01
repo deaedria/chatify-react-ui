@@ -35,7 +35,7 @@ const Chat = (props) => {
                         </h6>
                         <p className="other-account">
                             {check ?
-                                <img className="content-image" src={`http://localhost:5000/${text}`} alt="content" /> :
+                                <img className="content-image" src={`${process.env.REACT_APP_IMG_URL}${text}`} alt="content" /> :
                                 <p>{text}</p>
                             }
                         </p>
@@ -81,7 +81,7 @@ const Chat = (props) => {
                         <div className="btn-icon">
                             <img src="/svg/bookmark-white-icon.svg" alt="save chat" />
                             <img src="/svg/check-white-icon.svg" alt="read chat" />
-                            <img src="/svg/delete-icon.svg" alt="delete chat" onClick={() => { dispatch(DelChats(sc_id)); history.go(0) }} />
+                            <img src="/svg/delete-icon.svg" alt="delete chat" onClick={() => { dispatch(DelChats(sc_id)) }} />
                         </div>
                     </div>
                 </li>
