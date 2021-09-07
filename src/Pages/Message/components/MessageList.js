@@ -23,7 +23,7 @@ const MessageList = (props) => {
 
     const onClick = (id) => {
         dispatch(DelMessages(id))
-        window.location.reload()
+        window.location.reload(false)
     }
 
     const { contact } = useParams();
