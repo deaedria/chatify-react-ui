@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux"
-import { useHistory, useLocation } from "react-router-dom";
+// import { useHistory, useLocation } from "react-router-dom";
 import { DelMessages } from "../../../Redux/Actions/messages"
 // import Hammer from 'hammerjs';
 // import image from "../../../../chatify-app/"
@@ -18,12 +18,12 @@ const MessageList = (props) => {
 
     const dispatch = useDispatch()
     const messageRef = useRef();
-    let history = useHistory();
-    let location = useLocation();
+    // let history = useHistory();
+    // let location = useLocation();
 
     const onClick = (id) => {
         dispatch(DelMessages(id))
-        history.push(location.pathname) 
+        window.location.reload()
     }
 
     const { contact } = useParams();
