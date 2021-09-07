@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, useLocation } from "react-router-dom";
 import { withRouter } from "react-router";
 import { useDispatch, useSelector } from "react-redux"
 import { FetchChats } from "../../Redux/Actions/chats"
@@ -22,7 +22,7 @@ const Message = () => {
     // console.log(data)
 
     let history = useHistory();
-    // let location = useLocation();
+    let location = useLocation();
     const dispatch = useDispatch()
 
     const menuToggle = () => {
@@ -64,7 +64,7 @@ const Message = () => {
             dispatch(AddMessages(userToken, dataToken, contact, myData))
             dispatch(FetchMessages(userToken, dataToken, contact))
             dispatch(FetchChats(userToken, dataToken))
-            window.location.reload()
+            history.push(location.pathname)
             // document.querySelector(".box-list").scrollTop = document.querySelector(".box-list").scrollHeight
         }
     }
@@ -85,7 +85,7 @@ const Message = () => {
                 dispatch(FetchMessages(userToken, dataToken, contact))
                 dispatch(FetchChats(userToken, dataToken))
                 document.getElementById("input").value = "";
-                window.location.reload()
+                history.push(location.pathname)
             } else {
                 // alert("your massage must be filled")
             }
