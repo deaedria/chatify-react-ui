@@ -4,7 +4,7 @@ import * as EmailValidator from "email-validator";
 import Button from '../../Components/Button';
 import BackPage from '../../Components/BackPage';
 import ErrFormat from '../../Components/ErrFormat';
-import MessageFormat from '../../Components/MessageFormat';
+// import MessageFormat from '../../Components/MessageFormat';
 import { UserRegister } from '../../Redux/Actions/users'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -13,6 +13,7 @@ const Register = () => {
     const { isRegister, error, loading } = useSelector((state) => state.UserRegister)
 
     const [formData, setFormData] = useState({
+        name: '',
         phone: '',
         email: '',
         password: '',
@@ -31,19 +32,23 @@ const Register = () => {
                 setFormData({
                     ...formData, err: error, message: ''
                 });
-            }else{
+                alert(error)
+            } else {
                 setFormData({
                     ...formData, err: '', message: 'Successfully Registered'
                 });
+                alert('Successfully Registered')
             }
         } else if (!formData.phone.match(regex)) {
             setFormData({
                 ...formData, err: '(Enter Valid Phone Number !)', message: ''
             });
+            alert('Enter Valid Phone Number !')
         } else if (!EmailValidator.validate(formData.email)) {
             setFormData({
                 ...formData, err: '(Enter Valid Email !)', message: ''
             });
+            alert('Enter Valid Email !')
         }
 
     }
@@ -67,17 +72,23 @@ const Register = () => {
             <div className="form-box">
                 <BackPage className="back-page" header="Register" url="login" />
                 <p>Let's create your account!</p>
-                <ErrFormat err={formData.err} /> 
+                {/* <ErrFormat err={formData.err} /> */}
                 {/* {formData.err === '' ?
                     <div className="hide-message"></div>
                     : <ErrFormat err={formData.err} />} */}
                 {isRegister === true ?
-                <div>
-                    <ErrFormat err={null} />
-                    <MessageFormat message={formData.message} />
-                </div>
-                    : <div className="hide-message hide-err"></div> }
+                    <div>
+                        <ErrFormat err={null} />
+                        {/* <MessageFormat message={formData.message} /> */}
+                    </div>
+                    : <div className="hide-message hide-err"></div>}
                 <form onSubmit={(e) => onSubmit(e)} className="form-register" autoComplete="off">
+                    <div className="form-register-group">
+                        <input autoFocus type="text" data-testid="name-register" id="name-register" name="name" required onChange={(e) => {
+                            setFormData({ ...formData, name: e.target.value })
+                        }} />
+                        <label htmlFor="input-field">Name</label>
+                    </div>
                     <div className="form-register-group">
                         <input autoFocus type="tel" data-testid="phone-register" id="phone-register" name="phone" required onChange={(e) => {
                             setFormData({ ...formData, phone: e.target.value })
