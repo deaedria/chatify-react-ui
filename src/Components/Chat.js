@@ -10,12 +10,11 @@ const Chat = (props) => {
         name,
         text,
         time,
-        imgCheck,
         onClick,
         sc_id,
         unreadSum
     } = props
-    const check = text?.includes("/uploads/images/")
+    const check = text?.includes("/uploads/content/")
 
     const dispatch = useDispatch()
     let history = useHistory();
@@ -27,7 +26,7 @@ const Chat = (props) => {
                 {/* <Swipeout right={swipeoutBtns} backgroundColor="transparent">
                     <View> */}
                 <li className="chat-list list-item">
-                    <img src={"../../../../" + imgProfile} alt="friend" className="profile-image" />
+                    <img src={imgProfile ? `${process.env.REACT_APP_IMG_URL}${imgProfile}` : `/img/no-photo.png`} alt="friend" className="profile-image" />
                     <div className="text">
                         <h6>{name}
                             {parseInt(unreadSum) > 0 ?

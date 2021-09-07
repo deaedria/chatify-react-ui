@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux"
-import { useHistory, useLocation } from "react-router-dom";
+// import { useHistory, useLocation } from "react-router-dom";
 import { DelMessages } from "../../../Redux/Actions/messages"
 // import Hammer from 'hammerjs';
 // import image from "../../../../chatify-app/"
@@ -14,16 +14,16 @@ const MessageList = (props) => {
         content,
         status
     } = props
-    const check = content.includes("/uploads/images/")
+    const check = content.includes("/uploads/content/")
 
     const dispatch = useDispatch()
     const messageRef = useRef();
-    let history = useHistory();
-    let location = useLocation();
+    // let history = useHistory();
+    // let location = useLocation();
 
     const onClick = (id) => {
         dispatch(DelMessages(id))
-        history.push(location.pathname) 
+        window.location.reload()
     }
 
     const { contact } = useParams();
@@ -43,7 +43,7 @@ const MessageList = (props) => {
             <div className="row" ref={messageRef}>
                 <div className="col-md-6">
                     <div className="single-message-left dropdown">
-                        <img src={imgFriend} alt="profile contact" className="profile-image" />
+                        <img src={imgFriend ? `${process.env.REACT_APP_IMG_URL}${imgFriend}` : `/img/no-photo.png`} alt="profile contact" className="profile-image" />
                         <div className="dropbtn sender-content">
                             {check ?
                                 <img className="content-image" src={`${process.env.REACT_APP_IMG_URL}${content}`} alt="content" /> :
@@ -84,7 +84,7 @@ const MessageList = (props) => {
                                 <button onClick={() => onClick(props.id)}>delete</button>
                             </div>
                         </div>
-                        <img src={"/" + imgUser} alt="profile contact" className="profile-image" />
+                        <img src={imgUser ? `${process.env.REACT_APP_IMG_URL}/${imgUser}` : `/img/no-photo.png`} alt="profile contact" className="profile-image" />
                     </div>
                 </div>
             </div>
