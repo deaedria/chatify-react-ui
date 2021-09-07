@@ -28,6 +28,35 @@ const FetchContacts = (state = initialState, action = {}) => {
     }
 }
 
+const AddContactsList = (state = initialState, action = {}) => {
+    switch (action.type) {
+        case 'ADD_CONTACT_REQUEST':
+            return {
+                ...state,
+                loading: true
+            }    
+        case 'ADD_CONTACT_SUCCESS':
+            return {
+                ...state,
+                loading: false,
+                isAdded: true,
+                error: null,
+                data: action.payload
+            }    
+        case 'ADD_CONTACT_ERROR':
+            return {
+                ...state,
+                loading: false,
+                isAdded: false,
+                error: action.payload.response.data,
+                data: []
+            }    
+        default:
+            return state
+    }
+}
+
 export{
-    FetchContacts
+    FetchContacts,
+    AddContactsList
 }

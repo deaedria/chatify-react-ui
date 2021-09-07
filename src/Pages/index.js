@@ -4,6 +4,7 @@ import Register from './Register'
 import ForgotPassword from './ForgotPassword'
 import CallHistory from './CallHistory'
 import Contacts from './Contacts'
+import AddContacts from './AddContacts'
 import ChatList from './ChatList'
 import Message from './Message'
 
@@ -14,6 +15,7 @@ export {
     ForgotPassword,
     CallHistory,
     Contacts,
+    AddContacts,
     ChatList,
     Message
 }

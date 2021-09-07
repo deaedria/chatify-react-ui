@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 
 const ContactList = (props) => {
     const { image, name, contact_id, user_id } = props
-    // console.log(image, name, cl_id, contact_id, user_id, phone)
+    console.log(image)
 
     let history = useHistory();
     const dispatch = useDispatch()
@@ -17,7 +17,7 @@ const ContactList = (props) => {
 
     return (
         <section className="call-list" onClick={() => handleClick(name, user_id, contact_id)}>
-            <img src={`${process.env.REACT_APP_IMG_URL}${image}`} alt="friend" className="profile-image" />
+            <img src={image ? `${process.env.REACT_APP_IMG_URL}${image}` : `/img/no-photo.png`} alt="friend" className="profile-image" />
             <div className="text">
                 <h4>{name}</h4>
             </div>

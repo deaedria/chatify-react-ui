@@ -17,3 +17,22 @@ export const FetchContacts = (dataToken) => {
         })
     }
 }
+
+const AddContactRequest = () => {return {type: 'ADD_CONTACT_REQUEST'}}
+const AddContactSuccess = (data) => {return {type: 'ADD_CONTACT_SUCCESS',payload: data}}
+const AddContactError = (err) => {return {type: 'ADD_CONTACT_ERROR',payload: err}}
+
+export const AddContactsList = (formData, dataToken) => {
+    return (dispatch) => {
+        dispatch(AddContactRequest())
+        return axios({
+            url: `${process.env.REACT_APP_API_URL}contactlist/user_id?id=${dataToken.user_id}`,
+            method: 'POST',
+            data: formData
+        }).then((res) => {
+            dispatch(AddContactSuccess(res.data.data))
+        }).catch((err) => {
+            dispatch(AddContactError(err))
+        })
+    }
+}
