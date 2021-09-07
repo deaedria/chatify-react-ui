@@ -22,7 +22,7 @@ const Message = () => {
     // console.log(data)
 
     let history = useHistory();
-    // let location = useLocation();
+    let location = useLocation();
     const dispatch = useDispatch()
 
     const menuToggle = () => {
@@ -64,7 +64,7 @@ const Message = () => {
             dispatch(AddMessages(userToken, dataToken, contact, myData))
             dispatch(FetchMessages(userToken, dataToken, contact))
             dispatch(FetchChats(userToken, dataToken))
-            window.location.reload(false)
+            history.push(location.pathname) 
             // document.querySelector(".box-list").scrollTop = document.querySelector(".box-list").scrollHeight
         }
     }
@@ -73,7 +73,7 @@ const Message = () => {
         if (e.key === 'Enter') {
             e.preventDefault();
             const dataToken = JSON.parse(atob(userToken.split('.')[1]));
-            console.log(formData.content?.length)
+            // console.log(formData.content?.length)
 
             let myData = {
                 content: e.target.value,
@@ -85,7 +85,7 @@ const Message = () => {
                 dispatch(FetchMessages(userToken, dataToken, contact))
                 dispatch(FetchChats(userToken, dataToken))
                 document.getElementById("input").value = "";
-                window.location.reload(false)
+                history.push(location.pathname) 
             } else {
                 // alert("your massage must be filled")
             }
