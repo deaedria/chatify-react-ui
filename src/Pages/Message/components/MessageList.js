@@ -23,7 +23,7 @@ const MessageList = (props) => {
 
     const onClick = (id) => {
         dispatch(DelMessages(id))
-        history.push(location.pathname)
+        history.replace(location.pathname)
     }
 
     const { contact } = useParams();
